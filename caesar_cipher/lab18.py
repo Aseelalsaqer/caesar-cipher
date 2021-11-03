@@ -39,15 +39,19 @@ def count_words(plain_text):
             word_count += 1
     return word_count
     
-def crack(plain_text):
+def crack(plain_text_phrase):
+    """
+    Crack function that will decode the cipher so that an encrypted message can be transformed into its original state WITHOUT access to the key.
+    """
     text = ''
-    for key in range(26):
-        starter_word = decrypt(plain_text, key)
-        word_count = count_words(starter_word)
-        percentage = int(word_count / len(starter_word.split()) * 100)
-        if percentage > 35:
-            text+= starter_word
-            print(text,percentage)
+    for i in range(26):
+        total_words = decrypt(plain_text_phrase, i)
+        word_count = count_words(total_words)
+        ratio = word_count / len(total_words.split())
+        percentage = int(ratio * 100)
+        if percentage > 50:
+            text += total_words
+    return text
 if __name__ == "__main__":
     encrypted_smaple = encrypt('It was the best of times', 2)
     encrypted_smaple2 = encrypt('it was the worst of times', 2)
