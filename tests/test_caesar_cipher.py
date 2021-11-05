@@ -1,40 +1,39 @@
 from caesar_cipher.lab18  import encrypt , decrypt, crack
 
 
-# def test_version():
-#     assert __version__ == '0.1.0'
+
 
 def test_encrypt():
-    text1 = 'abc'
-    text2 = 'zzz'
+    sample = 'asd'
     shift1 = 1
-    shift2 = 10
-    shift3 = 27
-    actual1 = encrypt(text1, shift1)
-    actual2 = encrypt(text1, shift2)
-    actual3 = encrypt(text1, shift3)
-    actual4 = encrypt(text2, shift1)
-    excpected1 = 'bcd'
-    excpected2 = 'klm'
-    excpected3 = 'bcd'
-    excpected4 = 'aaa'
+    shift2 = 2
+    shift3 = 6
+    actual1 = encrypt(sample, shift1)
+    actual2 = encrypt(sample, shift2)
+    actual3 = encrypt(sample, shift3)
+    
+    excpected1 = 'bte'
+    excpected2 = 'cuf'
+    excpected3 = 'gyj'
+    
 
     assert actual1 == excpected1
     assert actual2 == excpected2
     assert actual3 == excpected3
-    assert actual4 == excpected4
+  
 
 
 def test_decrypt():
-    text = 'bcd'
+    sample = 'bte'
     shift = 1
-    actual = decrypt(text, shift)
-    excpected = 'abc'
+    actual = decrypt(sample, shift)
+    excpected = 'asd'
     assert actual == excpected
 
 
 def test_crack():
-    text = 'It was the best of times'
-    actual = crack(text)
-    excpected = 'It was the best of times'
+    sample = 'it was the worst of times'
+    encrypted = encrypt(sample, 2)
+    actual = crack(encrypted)
+    excpected = 'it was the worst of times'
     assert actual == excpected
